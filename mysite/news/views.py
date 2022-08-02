@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import News, Category
 from .forms import NewsForm
@@ -45,9 +46,11 @@ class ViewNews(DetailView):
     # pk_url_kwarg = 'news_id'
 
 
-class CreateNews(CreateView):
+class CreateNews(LoginRequiredMixin, CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
+    login_url = '/admin/'
+    # raise_exception = True
 
     # если success_url нет, то ищется в Model.get_absolute_url()
     # success_url = reverse_lazy('home')
