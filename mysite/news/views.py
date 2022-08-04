@@ -4,9 +4,11 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, logout
 from django.contrib import messages
+from django.core.mail import send_mail
 
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm, UserLoginForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactForm
+
 
 class HomeNews(ListView):
     model = News
@@ -90,6 +92,23 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+
+def test(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # send_mail(кому, что, с какого ящика, на какой ящик)
+            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], '...@gmail.com',
+                      ['marisedas@inbox.ru'], fail_silently=False)
+            if mail:
+                messages.success(request, 'Письмо отправлено!')
+                return redirect('test')
+            else:
+                messages.error(request, 'Ошибка отправки')
+    else:
+        form = ContactForm()
+    return render(request, 'news/test.html', {'form': form})
 
 # def index(request):
 #     news = News.objects.all()

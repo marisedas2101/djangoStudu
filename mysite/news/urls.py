@@ -13,5 +13,6 @@ urlpatterns = [
     # path('news/add-news/', add_news, name='add_news'),
     path('register/', register, name='register'),
     path('login/', user_login, name='login'),
-    path('logout/', user_logout, name='logout')
+    path('logout/', user_logout, name='logout'),
+    path('test/', test, name='test')
 ]
