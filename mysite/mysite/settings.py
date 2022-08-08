@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'ckeditor',
     'ckeditor_uploader',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,8 @@ EMAIL_USE_TLS = True
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CAPTCHA_LETTER_ROTATION = None
+# есть множество свойств у капчи, которые можно настраивать (убрать шум, сделать мат. выражения и тд).
+# https://django-simple-captcha.readthedocs.io/en/latest/advanced.html#configuration-toggles
+

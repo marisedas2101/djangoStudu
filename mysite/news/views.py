@@ -94,7 +94,7 @@ def user_logout(request):
     return redirect('login')
 
 
-def test(request):
+def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -103,7 +103,7 @@ def test(request):
                       ['marisedas@inbox.ru'], fail_silently=False)
             if mail:
                 messages.success(request, 'Письмо отправлено!')
-                return redirect('test')
+                return redirect('contact')
             else:
                 messages.error(request, 'Ошибка отправки')
     else:
