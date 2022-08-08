@@ -155,3 +155,9 @@ CAPTCHA_LETTER_ROTATION = None
 # есть множество свойств у капчи, которые можно настраивать (убрать шум, сделать мат. выражения и тд).
 # https://django-simple-captcha.readthedocs.io/en/latest/advanced.html#configuration-toggles
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'django_cache'),
+    }
+}
