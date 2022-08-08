@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'news.apps.NewsConfig',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +146,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = '...@gmail.com'
 EMAIL_HOST_PASSWORD = '...'
 EMAIL_USE_TLS = True
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
